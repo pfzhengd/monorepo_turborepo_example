@@ -5,7 +5,7 @@ import JSON from '@rollup/plugin-json'
 import typescript from '@rollup/plugin-typescript'
 import terser from '@rollup/plugin-terser'
 import alias from '@rollup/plugin-alias'
-import vuePlugin from '@vitejs/plugin-vue'
+import babel from '@rollup/plugin-babel'
 import ts from 'typescript'
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
@@ -20,10 +20,14 @@ import nodePolyfills from 'rollup-plugin-node-polyfills'
 
 function getPlugins () {
   return [
-    vuePlugin(),
     typescript({
       exclude: 'node_modules/**',
       typescript: ts
+    }),
+    babel({
+      babelHelpers: 'bundled',
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
     }),
     resolve(),
     commonjs(),
@@ -65,10 +69,6 @@ function getPlugins () {
       targets: [{
         src: 'src/assets/fonts',
         dest: 'lib/assets'
-      },
-      {
-        src: 'src/assets/vue',
-        dest: 'lib/assets'
       }
       ]
     })
@@ -76,12 +76,13 @@ function getPlugins () {
 }
 
 function getExternal () {
-  return ['vue']
+  return ['react', 'react-dom']
 }
 
 function getGlobals () {
   return {
-    vue: 'Vue'
+    react: 'React',
+    'react-dom': 'ReactDOM'
   }
 }
 
@@ -105,7 +106,7 @@ function genRollupConfig (module) {
 
 const moduleNames = [{
   name: 'Index',
-  input: 'index.ts',
+  input: 'index.tsx',
   output: 'index.js'
 }]
 
@@ -126,7 +127,7 @@ export default () => {
       )
     })
     config.push({
-      input: './src/index.ts',
+      input: './src/index.tsx',
       output: [{
         file: 'lib/types/index.d.ts',
         format: 'es'

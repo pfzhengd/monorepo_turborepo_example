@@ -4,12 +4,10 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'standard',
-    'plugin:vue/vue3-recommended'
+    'standard'
   ],
-  parser: 'vue-eslint-parser', // 使用 vue-eslint-parser 作为主解析器
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    parser: '@typescript-eslint/parser', // 在 parserOptions 中指定 TypeScript 的解析器
     ecmaVersion: 2021,
     sourceType: 'module',
     ecmaFeatures: {
@@ -21,7 +19,6 @@ module.exports = {
   ],
   rules: {
     'no-undef': 'off',
-    'no-useless-call': 'off',
-    'vue/multi-word-component-names': 'off'
+    'no-useless-call': 'off'
   }
 }
