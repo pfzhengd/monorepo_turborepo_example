@@ -19,8 +19,9 @@ A modern, production-ready TypeScript monorepo template powered by **Turborepo**
 
 ```
 turborepo-template/
-├── web/                    # Web applications
-│   └── main/              # Main application
+├── apps/                   # Applications
+│   ├── app/               # Flutter application
+│   └── web/               # React (Vite) application
 ├── packages/              # Reusable packages and libraries
 │   ├── ui/               # UI component library
 │   ├── utils/            # Utility functions
@@ -134,10 +135,10 @@ pnpm changeset:publish
 
 To create a new package in the monorepo:
 
-1. Create a new directory in `packages/` or `web/`:
+1. Create a new directory in `packages/` or `apps/`:
    ```bash
-   mkdir packages/my-package
-   cd packages/my-package
+  mkdir packages/my-package
+  cd packages/my-package
    ```
 
 2. Create a `package.json`:
