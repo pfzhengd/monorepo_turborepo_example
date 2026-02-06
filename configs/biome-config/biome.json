@@ -1,0 +1,107 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "**/*.{ts,tsx,js,jsx,json,css,scss,less}",
+      "!**/styles/icons/*",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/build",
+      "!**/coverage",
+      "!**/.turbo",
+      "!**/.pnpm",
+      "!**/.changeset",
+      "!**/CHANGELOG.md",
+      "!**/*.lock",
+      "!**/pnpm-lock.yaml",
+      "!**/*.d.ts",
+      "!**/*.map",
+      "!**/*.min.js",
+      "!**/*.generated.*",
+      "!**/*.gen.*",
+      "!**/scripts",
+      "!**/temp",
+      "!**/tmp",
+      "!**/.server",
+      "!**/storybook-static",
+      "!**/playwright-report"
+    ],
+    "maxSize": 1048576
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style":{
+        "noNonNullAssertion":"off",
+        "noDescendingSpecificity":"on"
+      },
+      "correctness":{
+        "useExhaustiveDependencies":"off",
+        "noChildrenProp": "off"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "warn",
+          "fix": "safe",
+          "options": {
+            "functions": ["clsx", "cva", "tv", "cn"]
+          }
+        }
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noConsole": "off",
+        "noArrayIndexKey": "off"
+      },
+      "complexity":{
+        "noImportantStyles":"off"
+      },
+      "a11y": {
+        "useButtonType": "off",
+        "useSemanticElements": "off",
+        "useKeyWithClickEvents": "off",
+        "noStaticElementInteractions": "off",
+        "useValidAnchor": "off",
+        "noLabelWithoutControl": "off"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "includes": ["packages/**/*.{ts,tsx,js,jsx,css}", "src/**/*.{ts,tsx,js,jsx}", "stories/**/*.{ts,tsx}"]
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "es5"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.{ts,tsx}"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "error"
+          }
+        }
+      }
+    }
+  ],
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+packages:
+  - 'packages/*'
+  - 'web/*'
+  - 'configs/*'
+overrides:
+  react: "19.2.3"
+  react-dom: "19.2.3"
+  vite: "5.0.0"
+  tsup: "8.0.1"
+  typescript: "5.3.3"

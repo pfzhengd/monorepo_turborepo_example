@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 定义 commit 类型及说明
+TYPES="feat:新增功能
+fix:修复 bug
+docs:仅文档变更
+style:代码格式（不影响功能，如空格、分号等）
+refactor:重构（既不是新增功能，也不是修复 bug）
+perf:性能优化
+test:增加或修改测试用例
+chore:构建/工具/依赖变更"
+
+# 运行 commitlint
+npx --no -- commitlint --edit "$1" || {
+
+  echo "\n❌ Commit 格式不合法！请使用以下类型开头："
+  echo "$TYPES"
+  echo "\n示例："
+  echo "  feat: 添加用户登录功能"
+  echo "  fix: 修复首页样式错误"
+  exit 1
+}

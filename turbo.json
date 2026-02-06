@@ -1,0 +1,37 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "pipeline": {
+    "storybook":{
+      "cache":false,
+      "persistent":true
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+     "test": {
+      "dependsOn": ["^test"],
+      "outputs": []
+    },
+     "test:e2e": {
+      "dependsOn": ["^test:e2e"],
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "lint:fix": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "type-check":{},
+    "format": {}
+  }
+}
