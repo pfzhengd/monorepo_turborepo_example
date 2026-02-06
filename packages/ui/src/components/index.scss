@@ -1,0 +1,10 @@
+@import '../styles/base/bem.scss';
+@import '../styles/base/var.scss';
+@import '../styles/base/root.scss';
+
+@include b('demo') {
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: bold;
+  color: $primary;
+}
